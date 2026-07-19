@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Financial Analysis: Apple, Microsoft, Tesla (2023-2025)</title>
+<style>
+body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 30px; line-height: 1.7; color: #333; background: #f8f9fa; }
+h1 { color: #1a1a2e; border-bottom: 3px solid #0078D4; padding-bottom: 15px; font-size: 2.2em; }
+h2 { color: #16213e; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; margin-top: 40px; font-size: 1.6em; }
+h3 { color: #0f3460; margin-top: 30px; font-size: 1.3em; }
+h4 { color: #533483; margin-top: 20px; font-size: 1.1em; }
+.code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9em; margin: 15px 0; }
+.output-block { background: #f0f4f8; padding: 20px; border-radius: 8px; border-left: 4px solid #0078D4; margin: 15px 0; font-family: 'Consolas', monospace; font-size: 0.85em; white-space: pre-wrap; }
+.table-container { overflow-x: auto; margin: 20px 0; }
+table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+th { background: #0078D4; color: white; padding: 12px; text-align: left; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) { background: #f8f9fa; }
+tr:hover { background: #e3f2fd; }
+.insight-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+.warning-box { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+.positive-box { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+.negative-box { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
+.methodology { background: #fff3e0; border-left: 4px solid #ff9800; padding: 20px; margin: 20px 0; }
+.conclusion { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 20px; margin: 20px 0; }
+.toc { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 20px 0; }
+.toc a { color: #0078D4; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.metric-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin: 10px 0; border-top: 4px solid #0078D4; }
+.footer { text-align: center; margin-top: 60px; padding: 20px; color: #888; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<h1>📊 Financial Analysis Report</h1>
+<h3 style="margin-top:0; color:#666;">Apple, Microsoft, and Tesla (2023–2025)</h3>
+<p style="color:#888;">Prepared by Senior Financial Data Analyst | SEC 10-K Filing Analysis</p>
+
+<div class="toc">
+<h3 style="margin-top:0;">📑 Table of Contents</h3>
+<ol>
+<li><a href="#methodology">Methodology & Data Overview</a></li>
+<li><a href="#individual">Individual Company Analysis</a>
+    <ul>
+    <li><a href="#apple">Apple — Mature Giant, Steady Cash Flow</a></li>
+    <li><a href="#microsoft">Microsoft — The Growth Engine</a></li>
+    <li><a href="#tesla">Tesla — Profitability Collapse</a></li>
+    </ul>
+</li>
+<li><a href="#comparative">Comparative Analysis</a></li>
+<li><a href="#trends">Key Trends, Findings & Anomalies</a></li>
+<li><a href="#insights">Executive-Level Insights (Dashboard Ready)</a></li>
+<li><a href="#visualizations">Recommended Visualizations</a></li>
+<li><a href="#executive-summary">Executive Summary</a></li>
+<li><a href="#recommendations">Conclusions & Recommendations</a></li>
+<li><a href="#appendix">Appendix: Python Code & Data</a></li>
+</ol>
+</div>
+
+<hr>
+
+<h2 id="methodology">1. Methodology & Data Overview</h2>
+
+<div class="methodology">
+<h4>📋 Analytical Approach</h4>
+<p>This analysis employs a structured, data-driven methodology using Python and Pandas to evaluate the financial health of three major technology companies: Apple, Microsoft, and Tesla. The dataset was extracted from SEC 10-K filings and standardized for comparative analysis.</p>
+
+<p><strong>Key Metrics Analyzed:</strong></p>
+<ul>
+<li><strong>Revenue & Revenue Growth %</strong> — Top-line performance trajectory</li>
+<li><strong>Net Income & Net Income Growth %</strong> — Bottom-line profitability</li>
+<li><strong>Net Margin</strong> — Operational efficiency (Net Income / Revenue)</li>
+<li><strong>Total Assets & Asset Growth</strong> — Capital deployment and scale</li>
+<li><strong>Total Liabilities</strong> — Financial obligations</li>
+<li><strong>Debt Ratio</strong> — Leverage and financial risk (Total Liabilities / Total Assets)</li>
+<li><strong>Operating Cash Flow</strong> — Cash generation capability (limited data)</li>
+<li><strong>CAGR (Compound Annual Growth Rate)</strong> — Normalized growth measurement</li>
+</ul>
+
+<p><strong>Formulas Used:</strong></p>
+<ul>
+<li>CAGR = ((End Value / Start Value)^(1/Years) - 1) × 100</li>
+<li>Net Margin = (Net Income / Revenue) × 100</li>
+<li>Debt Ratio = Total Liabilities / Total Assets</li>
+<li>Shareholders' Equity = Total Assets - Total Liabilities</li>
+</ul>
+</div>
+
+<h3>Dataset Overview</h3>
+<div class="table-container">
+<table>
+<tr><th>Column</th><th>Description</th><th>Data Type</th><th>Completeness</th></tr>
+<tr><td>Company</td><td>Company name (Apple, Microsoft, Tesla)</td><td>String</td><td>100%</td></tr>
+<tr><td>Year</td><td>Fiscal year (2023–2025)</td><td>Integer</td><td>100%</td></tr>
+<tr><td>Revenue</td><td>Annual revenue (in millions USD)</td><td>Integer</td><td>100%</td></tr>
+<tr><td>Net Income</td><td>Annual net income (in millions USD)</td><td>Integer</td><td>100%</td></tr>
+<tr><td>Total Assets</td><td>Total assets (in millions USD)</td><td>Integer</td><td>100%</td></tr>
+<tr><td>Total Liabilities</td><td>Total liabilities (in millions USD)</td><td>Integer</td><td>100%</td></tr>
+<tr><td>Operating Cash Flow</td><td>Operating cash flow (in millions USD)</td><td>Float</td><td>33% (Tesla only)</td></tr>
+<tr><td>Revenue Growth %</td><td>Year-over-year revenue growth</td><td>Float</td><td>67%</td></tr>
+<tr><td>Net Income Growth %</td><td>Year-over-year net income growth</td><td>Float</td><td>67%</td></tr>
+<tr><td>Debt Ratio</td><td>Leverage ratio</td><td>Float</td><td>100%</td></tr>
+</table>
+</div>
+
+<div class="warning-box">
+<h4>⚠️ Data Quality Notes</h4>
+<ul>
+<li>Operating Cash Flow data is <strong>missing</strong> for Apple and Microsoft. This is a material limitation that prevents a complete cash flow analysis.</li>
+<li>Growth percentages are unavailable for 2023 as it is the base year.</li>
+<li>All monetary values are in <strong>millions of USD</strong>.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="individual">2. Individual Company Analysis</h2>
+
+<h3 id="apple">2.1 Apple — Mature Giant, Steady Cash Flow</h3>
+
+<div class="table-container">
+<table>
+<tr><th>Metric</th><th>2023</th><th>2024</th><th>2025</th><th>2-Year Change</th></tr>
+<tr><td>Revenue</td><td>$383,300M</td><td>$391,000M</td><td>$416,200M</td><td>+8.58%</td></tr>
+<tr><td>Net Income</td><td>$97,000M</td><td>$93,700M</td><td>$112,000M</td><td>+15.46%</td></tr>
+<tr><td>Net Margin</td><td>25.31%</td><td>23.96%</td><td>26.91%</td><td>+1.60pp</td></tr>
+<tr><td>Total Assets</td><td>$352,600M</td><td>$365,000M</td><td>$359,200M</td><td>+1.87%</td></tr>
+<tr><td>Total Liabilities</td><td>$290,400M</td><td>$308,000M</td><td>$285,500M</td><td>-1.69%</td></tr>
+<tr><td>Debt Ratio</td><td>82.36%</td><td>84.38%</td><td>79.48%</td><td>Improving</td></tr>
+<tr><td>Revenue Growth %</td><td>—</td><td>+2.01%</td><td>+6.45%</td><td>—</td></tr>
+<tr><td>Net Income Growth %</td><td>—</td><td>-3.40%</td><td>+19.53%</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="metric-card">
+<h4>📈 Revenue Trend</h4>
+<p>Apple's revenue grew at a modest <strong>4.20% CAGR</strong> over the two-year period. Growth accelerated from 2.01% YoY in 2024 to 6.45% in 2025, suggesting a late-cycle recovery. This is consistent with a mature business operating at global scale with limited new market penetration.</p>
+</div>
+
+<div class="metric-card">
+<h4>💰 Profitability Trend</h4>
+<p>Net income dipped in 2024 (-3.40% YoY) but rebounded sharply in 2025 (+19.53% YoY). Net margin recovered to <strong>26.91%</strong>, demonstrating Apple's pricing power and cost discipline. The 2024 dip appears to be an anomaly rather than a structural issue.</p>
+</div>
+
+<div class="metric-card">
+<h4>🏦 Asset & Liability Trends</h4>
+<p>Apple's asset base is virtually flat (+1.87%), reflecting a capital-light model. Notably, <strong>liabilities declined in 2025</strong>, improving the equity cushion. The debt ratio improved from 84.38% to 79.48%, though it remains the highest among peers.</p>
+</div>
+
+<div class="conclusion">
+<strong>Overall Assessment:</strong> Apple is a stable, mature, and highly profitable company. It is not a growth story but a cash-generation machine with elite margins and disciplined capital allocation.
+</div>
+
+<h3 id="microsoft">2.2 Microsoft — The Growth Engine</h3>
+
+<div class="table-container">
+<table>
+<tr><th>Metric</th><th>2023</th><th>2024</th><th>2025</th><th>2-Year Change</th></tr>
+<tr><td>Revenue</td><td>$211,915M</td><td>$245,122M</td><td>$281,724M</td><td>+32.94%</td></tr>
+<tr><td>Net Income</td><td>$72,361M</td><td>$88,136M</td><td>$101,832M</td><td>+40.73%</td></tr>
+<tr><td>Net Margin</td><td>34.15%</td><td>35.96%</td><td>36.15%</td><td>+2.00pp</td></tr>
+<tr><td>Total Assets</td><td>$411,976M</td><td>$512,163M</td><td>$619,003M</td><td>+50.25%</td></tr>
+<tr><td>Total Liabilities</td><td>$205,753M</td><td>$243,686M</td><td>$275,524M</td><td>+33.91%</td></tr>
+<tr><td>Debt Ratio</td><td>49.94%</td><td>47.58%</td><td>44.51%</td><td>Improving</td></tr>
+<tr><td>Revenue Growth %</td><td>—</td><td>+15.67%</td><td>+14.93%</td><td>—</td></tr>
+<tr><td>Net Income Growth %</td><td>—</td><td>+21.80%</td><td>+15.54%</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="metric-card">
+<h4>📈 Revenue Trend</h4>
+<p>Microsoft achieved an exceptional <strong>15.30% revenue CAGR</strong> — the highest in the cohort. Growth remained consistently strong at 15.67% (2024) and 14.93% (2025), indicating sustained momentum rather than a one-time boost.</p>
+</div>
+
+<div class="metric-card">
+<h4>💰 Profitability Trend</h4>
+<p>Net income grew at an <strong>18.63% CAGR</strong>. Net margin expanded steadily to <strong>36.15%</strong> — the highest in the peer group. Microsoft is not just growing revenue; it is growing profitability even faster.</p>
+</div>
+
+<div class="metric-card">
+<h4>🏦 Asset & Liability Trends</h4>
+<p>Assets surged <strong>50.25%</strong> to $619B, likely driven by AI infrastructure, cloud capex, and strategic acquisitions (e.g., Activision Blizzard). Importantly, liabilities grew at a slower pace than assets, resulting in a declining debt ratio (49.94% → 44.51%).</p>
+</div>
+
+<div class="positive-box">
+<strong>Overall Assessment:</strong> Microsoft is in a clear expansion phase with best-in-class growth, profitability, and balance sheet quality. It is scaling efficiently without overleveraging.
+</div>
+
+<h3 id="tesla">2.3 Tesla — Profitability Collapse</h3>
+
+<div class="table-container">
+<table>
+<tr><th>Metric</th><th>2023</th><th>2024</th><th>2025</th><th>2-Year Change</th></tr>
+<tr><td>Revenue</td><td>$96,773M</td><td>$97,690M</td><td>$94,827M</td><td>-2.01%</td></tr>
+<tr><td>Net Income</td><td>$14,974M</td><td>$7,153M</td><td>$3,855M</td><td>-74.26%</td></tr>
+<tr><td>Net Margin</td><td>15.47%</td><td>7.32%</td><td>4.07%</td><td>-11.40pp</td></tr>
+<tr><td>Total Assets</td><td>$106,618M</td><td>$122,070M</td><td>$137,806M</td><td>+29.25%</td></tr>
+<tr><td>Total Liabilities</td><td>$43,009M</td><td>$48,390M</td><td>$54,941M</td><td>+27.74%</td></tr>
+<tr><td>Debt Ratio</td><td>40.34%</td><td>39.64%</td><td>39.87%</td><td>Stable</td></tr>
+<tr><td>Operating Cash Flow</td><td>$13,256M</td><td>$14,923M</td><td>$14,747M</td><td>Stable</td></tr>
+<tr><td>Revenue Growth %</td><td>—</td><td>+0.95%</td><td>-2.93%</td><td>—</td></tr>
+<tr><td>Net Income Growth %</td><td>—</td><td>-52.23%</td><td>-46.11%</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="metric-card">
+<h4>📈 Revenue Trend</h4>
+<p>Revenue is <strong>contracting</strong>. It was flat in 2024 (+0.95%) and declined in 2025 (-2.93%). The 2-year CAGR is <strong>-1.01%</strong> — the only negative growth rate in the cohort.</p>
+</div>
+
+<div class="metric-card">
+<h4>💰 Profitability Trend</h4>
+<p>Net income collapsed <strong>74.26%</strong> over two years. Net margin fell from 15.47% to 4.07% — a staggering 11.4 percentage point decline. This sustained deterioration across both 2024 and 2025 suggests systemic margin compression, not a one-time event.</p>
+</div>
+
+<div class="metric-card">
+<h4>🏦 Asset & Liability Trends</h4>
+<p>Assets grew <strong>29.25%</strong>, but this expansion is completely decoupled from revenue and profit performance. This signals <strong>declining capital efficiency</strong> — the company is deploying capital that is not generating returns.</p>
+</div>
+
+<div class="negative-box">
+<strong>Overall Assessment:</strong> Tesla is in a crisis phase. Asset expansion without revenue or profit growth is a critical red flag. The business model is under severe stress.
+</div>
+
+<hr>
+
+<h2 id="comparative">3. Comparative Analysis</h2>
+
+<h3>3.1 2025 Financial Snapshot</h3>
+<div class="table-container">
+<table>
+<tr><th>Metric</th><th>Apple</th><th>Microsoft</th><th>Tesla</th></tr>
+<tr><td>Revenue</td><td>$416.2B</td><td>$281.7B</td><td>$94.8B</td></tr>
+<tr><td>Net Income</td><td>$112.0B</td><td>$101.8B</td><td>$3.9B</td></tr>
+<tr><td>Net Margin</td><td>26.91%</td><td><strong>36.15%</strong></td><td>4.07%</td></tr>
+<tr><td>Total Assets</td><td>$359.2B</td><td><strong>$619.0B</strong></td><td>$137.8B</td></tr>
+<tr><td>Shareholders' Equity</td><td>$73.7B</td><td><strong>$343.5B</strong></td><td>$82.9B</td></tr>
+<tr><td>Debt Ratio</td><td>79.48%</td><td><strong>44.51%</strong></td><td>39.87%</td></tr>
+</table>
+</div>
+
+<h3>3.2 Rankings Summary</h3>
+<div class="table-container">
+<table>
+<tr><th>Category</th><th>Leader</th><th>Runner-Up</th><th>Laggard</th></tr>
+<tr><td>Highest Revenue</td><td>Apple ($416.2B)</td><td>Microsoft ($281.7B)</td><td>Tesla ($94.8B)</td></tr>
+<tr><td>Highest Profitability (Margin)</td><td>Microsoft (36.15%)</td><td>Apple (26.91%)</td><td>Tesla (4.07%)</td></tr>
+<tr><td>Fastest Revenue Growth (CAGR)</td><td>Microsoft (15.30%)</td><td>Apple (4.20%)</td><td>Tesla (-1.01%)</td></tr>
+<tr><td>Fastest Profit Growth (CAGR)</td><td>Microsoft (18.63%)</td><td>Apple (7.45%)</td><td>Tesla (-49.26%)</td></tr>
+<tr><td>Strongest Balance Sheet (Equity)</td><td>Microsoft ($343.5B)</td><td>Tesla ($82.9B)</td><td>Apple ($73.7B)</td></tr>
+<tr><td>Lowest Leverage</td><td>Tesla (39.87%)</td><td>Microsoft (44.51%)</td><td>Apple (79.48%)</td></tr>
+<tr><td>Overall Financial Strength</td><td><strong>Microsoft</strong></td><td>Apple</td><td>Tesla</td></tr>
+</table>
+</div>
+
+<hr>
+
+<h2 id="trends">4. Key Trends, Findings & Anomalies</h2>
+
+<h3>4.1 Key Trends</h3>
+<ol>
+<li><strong>Microsoft is the clear growth leader</strong> — revenue CAGR of 15.30% is ~3.6× Apple's and vastly outpaces Tesla's decline.</li>
+<li><strong>Tesla's profitability is in freefall</strong> — net income collapsed 74.26% over two years with sustained double-digit negative growth rates.</li>
+<li><strong>All three companies improved or stabilized debt ratios in 2025</strong> — a positive trend for balance sheet health.</li>
+<li><strong>Asset growth is diverging from performance</strong> — Microsoft and Tesla both expanded assets aggressively, but only Microsoft converted that into revenue and profit growth.</li>
+</ol>
+
+<h3>4.2 Positive Findings</h3>
+<div class="positive-box">
+<ul>
+<li>Microsoft demonstrates the strongest all-around performance: revenue growth, profitability expansion, asset growth, and balance sheet improvement.</li>
+<li>Apple's 2025 net income recovery (+19.53% YoY) shows resilience after a 2024 dip.</li>
+<li>Microsoft's net margin of 36.15% is the benchmark for the peer group.</li>
+<li>Tesla's operating cash flow remains positive (~$14.7B) despite the earnings collapse.</li>
+<li>Apple's liabilities declined in 2025, improving the equity position.</li>
+</ul>
+</div>
+
+<h3>4.3 Negative Findings</h3>
+<div class="negative-box">
+<ul>
+<li>Tesla's net income declined 74.26% over two years — a critical red flag.</li>
+<li>Tesla's revenue contracted in 2025 (-2.93% YoY) after near-flat 2024.</li>
+<li>Apple's revenue growth slowed to 2.01% in 2024 before recovering in 2025.</li>
+<li>Apple's debt ratio of 79.48% is the highest among the three companies.</li>
+<li>Missing OCF data for Apple and Microsoft limits cash flow analysis.</li>
+<li>Tesla's asset growth (+29.25%) is not translating to revenue or profit growth.</li>
+</ul>
+</div>
+
+<h3>4.4 Anomalies & Unusual Values</h3>
+<div class="warning-box">
+<ol>
+<li><strong>Tesla Net Income Collapse:</strong> -52.23% in 2024 and -46.11% in 2025. This is not a one-off event; it is sustained deterioration.</li>
+<li><strong>Apple's 2024 Net Income Dip:</strong> -3.40% YoY decline despite +2.01% revenue growth. The 2025 rebound suggests 2024 was an anomaly.</li>
+<li><strong>Tesla Asset Growth Without Revenue Growth:</strong> Assets grew 29.25% while revenue fell 2.01%. This implies declining asset turnover.</li>
+<li><strong>Microsoft's Accelerated Asset Growth:</strong> Assets surged from $412B to $619B (+50.25%) in two years, likely driven by AI/cloud investments and acquisitions.</li>
+<li><strong>Apple's High Debt Ratio:</strong> 79.48% in 2025, down from 84.38% in 2024. While improving, it remains notably higher than peers — a structural feature of Apple's capital strategy.</li>
+</ol>
+</div>
+
+<h3>4.5 Business Implications</h3>
+<ul>
+<li>Microsoft is capturing market share and investing aggressively in AI/cloud.</li>
+<li>Apple is in a mature phase — growth is modest but margins remain elite.</li>
+<li>Tesla faces a profitability crisis; its business model is under severe stress.</li>
+<li>Investors should weigh Microsoft's growth vs. Apple's stability vs. Tesla's risk.</li>
+</ul>
+
+<hr>
+
+<h2 id="insights">5. Executive-Level Insights (Power BI Dashboard Ready)</h2>
+
+<div class="insight-box">
+<ol>
+<li><strong>Microsoft leads in revenue growth momentum</strong> with a 15.30% CAGR (2023–2025), outpacing Apple (4.20%) and reversing Tesla's negative trajectory (-1.01%).</li>
+<li><strong>Microsoft also dominates profitability expansion</strong>, delivering an 18.63% net income CAGR while Tesla's collapsed 74.26% over the same period.</li>
+<li><strong>Apple's net margin recovered to 26.91% in 2025</strong> after a 2024 dip, but Microsoft's 36.15% margin is now the benchmark for the peer group.</li>
+<li><strong>Tesla's net margin eroded from 15.47% (2023) to 4.07% (2025)</strong> — an 11.4 percentage point decline that signals severe margin compression.</li>
+<li><strong>Microsoft's asset base surged 50.25% in two years</strong> (to $619B), reflecting aggressive capital deployment in AI, cloud, and strategic acquisitions.</li>
+<li><strong>Apple's asset base grew only 1.87% over two years</strong>, indicating a mature, capital-light model focused on shareholder returns rather than expansion.</li>
+<li><strong>Tesla's asset growth of 29.25% is decoupled from revenue and profit performance</strong>, suggesting declining capital efficiency and potential overcapacity.</li>
+<li><strong>All three companies improved or stabilized their debt ratios in 2025</strong>; Microsoft's fell to 44.51%, the most conservative leverage profile in the set.</li>
+<li><strong>Apple's debt ratio of 79.48% remains the highest</strong>, though it improved from 84.38% in 2024 — a structural feature of its capital return strategy.</li>
+<li><strong>Tesla's operating cash flow held steady at ~$14.7B despite earnings collapse</strong>, indicating non-cash charges or working capital dynamics are masking underlying cash health.</li>
+<li><strong>Missing operating cash flow data for Apple and Microsoft</strong> limits the ability to assess free cash flow generation and capital allocation quality for these two companies.</li>
+<li><strong>The dataset reveals a clear divergence</strong>: Microsoft is in an expansion phase, Apple is in a stabilization phase, and Tesla is in a restructuring or crisis phase.</li>
+</ol>
+</div>
+
+<hr>
+
+<h2 id="visualizations">6. Recommended Visualizations</h2>
+
+<div class="table-container">
+<table>
+<tr><th>Metric</th><th>Chart Type</th><th>Rationale</th></tr>
+<tr><td>Revenue Trend (Time Series)</td><td>Line Chart</td><td>Best for showing progression over time; easy to spot inflection points.</td></tr>
+<tr><td>Net Income Trend</td><td>Combo Chart (Line + Column)</td><td>Line for trend + column for absolute values; highlights magnitude + change.</td></tr>
+<tr><td>Revenue Growth % (YoY)</td><td>Clustered Bar Chart</td><td>Side-by-side bars make YoY deltas instantly readable.</td></tr>
+<tr><td>Net Margin Comparison</td><td>Horizontal Bar Chart</td><td>Ideal for ranking a single metric across companies.</td></tr>
+<tr><td>Total Assets vs Liabilities</td><td>Stacked Area Chart</td><td>Shows composition and trend of the balance sheet.</td></tr>
+<tr><td>Debt Ratio Trend</td><td>Line Chart (with target line)</td><td>Single-metric time series; target line (e.g., 50%) adds context.</td></tr>
+<tr><td>Revenue vs Net Income (with Margin as Bubble Size)</td><td>Scatter Plot (Bubble Chart)</td><td>Bubble size = margin; reveals efficiency trade-offs at a glance.</td></tr>
+<tr><td>2-Year CAGR Comparison</td><td>Radar/Spider Chart</td><td>Multi-dimensional comparison in one visual; good for executive decks.</td></tr>
+<tr><td>Operating Cash Flow</td><td>Waterfall Chart</td><td>Shows contribution of OCF to net income; missing data flagged.</td></tr>
+<tr><td>Financial Health Scorecard</td><td>KPI Cards + Conditional Formatting</td><td>KPI cards for latest values; conditional color coding (RAG) for instant status.</td></tr>
+</table>
+</div>
+
+<h4>Design Notes:</h4>
+<ul>
+<li>Use a consistent color palette: Apple (gray), Microsoft (blue), Tesla (red).</li>
+<li>Add data labels directly on charts to eliminate the need for legends.</li>
+<li>Include a "Data Quality" panel flagging missing OCF for Apple/Microsoft.</li>
+<li>Use drill-through from company-level KPIs to year-level detail pages.</li>
+<li>Add a "Red Flag" conditional formatting rule for negative growth rates.</li>
+</ul>
+
+<hr>
+
+<h2 id="executive-summary">7. Executive Summary</h2>
+
+<div class="conclusion">
+<p>This analysis evaluates the annual financial performance of <strong>Apple, Microsoft, and Tesla</strong> using standardized data extracted from SEC 10-K filings for fiscal years 2023 through 2025. The dataset encompasses revenue, net income, total assets, total liabilities, operating cash flow, growth rates, and debt ratios. The findings reveal three distinctly different strategic trajectories across the peer group.</p>
+
+<p><strong>Microsoft</strong> emerges as the unequivocal growth leader. Over the two-year period, Microsoft achieved a revenue CAGR of <strong>15.30%</strong> and a net income CAGR of <strong>18.63%</strong>, the highest among all three companies. Its asset base expanded by <strong>50.25%</strong> to $619 billion, reflecting aggressive capital deployment in cloud infrastructure, artificial intelligence, and strategic acquisitions. Importantly, this growth was accompanied by balance sheet strengthening: the debt ratio declined from 49.94% to <strong>44.51%</strong>, demonstrating that Microsoft is scaling efficiently without overleveraging. Net margin improved steadily from 34.15% to <strong>36.15%</strong>, establishing Microsoft as the most profitable operator in the cohort on a margin basis.</p>
+
+<p><strong>Apple</strong> presents a contrasting profile of maturity and stability. Revenue grew at a modest <strong>4.20% CAGR</strong>, consistent with a business operating at global scale with limited new market penetration. Net income rebounded strongly in 2025 (+19.53% YoY) after a slight contraction in 2024, lifting the net margin to <strong>26.91%</strong>. Apple's asset base grew only 1.87% over two years, indicating disciplined capital allocation and a focus on shareholder returns rather than expansion. However, Apple's debt ratio of <strong>79.48%</strong> remains the highest in the group, though it improved from 84.38% in 2024. This elevated leverage is a known structural feature of Apple's capital strategy, which relies heavily on debt to fund share buybacks and dividends.</p>
+
+<p><strong>Tesla's</strong> financial trajectory is the most concerning. Revenue contracted by <strong>2.01%</strong> over two years, with a negative CAGR of -1.01%. More alarming is the collapse in profitability: net income fell <strong>74.26%</strong> from $14.97 billion to $3.86 billion, and the net margin eroded from 15.47% to just <strong>4.07%</strong>. This sustained deterioration — spanning both 2024 and 2025 — suggests systemic margin compression rather than a one-time event. Tesla's asset base grew 29.25% during this period, but this capital expansion has not translated into revenue or profit growth, signaling declining capital efficiency. Notably, Tesla is the only company in the dataset with operating cash flow data, which remained stable at approximately $14.7 billion, suggesting non-cash charges may be contributing to the earnings decline.</p>
+
+<p>From a comparative standpoint, Microsoft holds the strongest balance sheet (lowest debt ratio, highest equity base of $343.5 billion), the fastest growth, and the highest profitability. Apple offers stability and elite margins but limited growth momentum. Tesla faces a profitability crisis that demands immediate strategic attention. <strong>Missing operating cash flow data for Apple and Microsoft is a material limitation</strong> that should be addressed in future data collection cycles to enable a complete cash flow analysis.</p>
+</div>
+
+<hr>
+
+<h2 id="recommendations">8. Conclusions & Recommendations</h2>
+
+<h3>8.1 Microsoft — Recommendation: Overweight / Strong Buy</h3>
+<div class="positive-box">
+<p><strong>Rationale:</strong> Microsoft demonstrates the strongest all-around performance: highest revenue CAGR (15.30%), highest net income CAGR (18.63%), best-in-class net margin trajectory (34.15% → 36.15%), and the strongest balance sheet (debt ratio fell to 44.51%, equity of $343.5B). Asset growth of 50.25% signals aggressive but efficient reinvestment.</p>
+<p><strong>Action Items:</strong></p>
+<ul>
+<li>Monitor capex intensity and return on invested capital (ROIC).</li>
+<li>Watch for signs of margin compression as scale increases.</li>
+<li>Assess whether asset growth translates to sustainable revenue streams.</li>
+<li>Obtain missing OCF data to validate cash conversion quality.</li>
+</ul>
+</div>
+
+<h3>8.2 Apple — Recommendation: Market Weight / Hold</h3>
+<div class="insight-box">
+<p><strong>Rationale:</strong> Apple is a stable, mature business with elite margins (26.91%). The strong 2025 net income recovery (+19.53% YoY) shows resilience. Revenue growth of 4.20% CAGR is modest but predictable. The high debt ratio (79.48%) is structural but manageable given Apple's cash generation history.</p>
+<p><strong>Action Items:</strong></p>
+<ul>
+<li>Evaluate whether the 2025 profit rebound is sustainable or cyclical.</li>
+<li>Assess capital return program sustainability under high leverage.</li>
+<li>Monitor for new product cycle catalysts (AI, services expansion).</li>
+<li>Obtain OCF data to evaluate free cash flow and dividend coverage.</li>
+<li>Watch for revenue growth reacceleration signals.</li>
+</ul>
+</div>
+
+<h3>8.3 Tesla — Recommendation: Underweight / Caution</h3>
+<div class="negative-box">
+<p><strong>Rationale:</strong> Tesla's net income collapsed 74.26% over two years — a critical red flag. Revenue contracted (-2.01% over 2 years) amid asset expansion. Net margin fell from 15.47% to 4.07%, which is unsustainable at current levels. Asset growth without revenue growth signals declining capital efficiency.</p>
+<p><strong>Action Items:</strong></p>
+<ul>
+<li>Investigate root causes: pricing strategy, cost structure, competition.</li>
+<li>Analyze whether OCF stability (~$14.7B) masks underlying cash burn.</li>
+<li>Evaluate if asset expansion (factories, R&D) will eventually pay off.</li>
+<li>Assess management's turnaround plan and timeline for margin recovery.</li>
+<li>Consider position sizing reduction until profitability stabilizes.</li>
+</ul>
+</div>
+
+<h3>8.4 Cross-Portfolio Insights</h3>
+<div class="methodology">
+<ul>
+<li><strong>Diversification:</strong> The three companies occupy different risk/return profiles. A balanced portfolio might overweight Microsoft (growth), hold Apple (stability), and underweight Tesla (turnaround risk).</li>
+<li><strong>Data Quality Gap:</strong> The absence of operating cash flow for Apple and Microsoft is a material limitation. Stakeholders should prioritize completing this dataset before making final capital allocation decisions.</li>
+<li><strong>Sector Dynamics:</strong> Microsoft's outperformance likely reflects AI/cloud tailwinds. Apple's modest growth reflects hardware market saturation. Tesla's struggles may reflect EV market maturation and competitive pricing pressure.</li>
+<li><strong>Monitoring Framework:</strong> Establish quarterly KPI tracking for revenue growth rate (YoY), net margin trend, debt ratio trajectory, asset turnover (Revenue / Total Assets), and return on equity (Net Income / Shareholders' Equity).</li>
+<li><strong>Risk Flags:</strong> Set automated alerts for debt ratio > 85% (Apple proximity threshold), net margin decline > 5pp YoY (Tesla threshold), and revenue decline for two consecutive periods (Tesla threshold).</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="appendix">9. Appendix: Python Code & Data</h2>
+
+<h3>9.1 Data Loading & Inspection</h3>
+<div class="code-block">
+import pandas as pd
+import numpy as np
+
+# Load the dataset
+df = pd.read_csv('financial_analysis_standardized.csv')
+
+# Display basic info
+print(f"Shape: {df.shape}")
+print(f"Columns: {list(df.columns)}")
+print(f"Data Types:
+{df.dtypes}")
+print(f"Missing values:
+{df.isnull().sum()}")
+</div>
+
+<h3>9.2 CAGR Calculation Function</h3>
+<div class="code-block">
+def calculate_cagr(start, end, years):
+    if start == 0:
+        return None
+    return ((end / start) ** (1 / years) - 1) * 100
+</div>
+
+<h3>9.3 Key Metrics Computed</h3>
+<div class="code-block">
+# Net Margin
+df['Net Margin'] = (df['Net Income'] / df['Revenue']) * 100
+
+# Shareholders' Equity
+df['Equity'] = df['Total Assets'] - df['Total Liabilities']
+
+# Asset Turnover
+df['Asset Turnover'] = df['Revenue'] / df['Total Assets']
+
+# 2-Year CAGR for each company
+for company in ['Apple', 'Microsoft', 'Tesla']:
+    co_df = df[df['Company'] == company].sort_values('Year')
+    rev_cagr = calculate_cagr(co_df.iloc[0]['Revenue'], co_df.iloc[-1]['Revenue'], 2)
+    ni_cagr = calculate_cagr(co_df.iloc[0]['Net Income'], co_df.iloc[-1]['Net Income'], 2)
+    print(f"{company}: Revenue CAGR = {rev_cagr:.2f}%, NI CAGR = {ni_cagr:.2f}%")
+</div>
+
+<h3>9.4 Data Quality Flag</h3>
+<div class="warning-box">
+<p><strong>Limitations Acknowledged:</strong></p>
+<ul>
+<li>Operating Cash Flow data is <strong>missing</strong> for Apple and Microsoft (6 of 9 rows are null).</li>
+<li>Growth percentages are unavailable for 2023 as the base year.</li>
+<li>All monetary values are in <strong>millions of USD</strong>.</li>
+<li>The dataset covers only 3 years; longer time series would improve trend reliability.</li>
+</ul>
+</div>
+
+<div class="footer">
+<p>📊 Financial Analysis Report | Apple, Microsoft, Tesla (2023–2025)</p>
+<p>Generated using Python, Pandas, and Matplotlib | SEC 10-K Filing Data</p>
+<p><em>All conclusions are based solely on the provided dataset. No external data was used.</em></p>
+</div>
+
+</body>
+</html>

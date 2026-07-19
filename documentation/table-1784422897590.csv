@@ -1,0 +1,5 @@
+﻿File,Format,Purpose
+[Financial Analysis Dashboard](sandbox:///mnt/agents/output/financial_analysis_dashboard.png),PNG (522 KB),12-panel visualization dashboard for Power BI/executive presentation
+[Financial Analysis Notebook](sandbox:///mnt/agents/output/financial_analysis_notebook.html),HTML (31 KB),"Fully documented Jupyter-style analysis with methodology, tables, and narrative"
+[Financial Analysis Report](sandbox:///mnt/agents/output/financial_analysis_report.md),Markdown (21 KB),"Clean, printable report suitable for PDF conversion"
+[Computed Metrics Summary](sandbox:///mnt/agents/output/computed_metrics_summary.csv),CSV (468 B),"All derived metrics (CAGR, margins, equity, growth rates) in tabular form"
