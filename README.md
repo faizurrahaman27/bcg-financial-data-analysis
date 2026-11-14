@@ -173,7 +173,7 @@ The Power BI dashboard provides interactive visualizations including:
 
 GitHub Repository:
 
-https://github.com/faizur55/bcg-financial-data-analysis
+https://github.com/faizurrahaman27/bcg-financial-data-analysis
 
 ---
 
@@ -190,7 +190,7 @@ The simulation provided practical exposure to solving real-world financial analy
 **Shaik Faizur Rahaman**
 
 GitHub:
-https://github.com/faizur55
+https://github.com/faizurrahaman27
 
 LinkedIn:
 https://www.linkedin.com/in/faizurrahaman27/
